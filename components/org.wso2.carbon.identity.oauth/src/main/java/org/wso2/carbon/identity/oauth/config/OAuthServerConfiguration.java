@@ -174,6 +174,8 @@ public class OAuthServerConfiguration {
     private List<String> supportedTokenTypes = new ArrayList<>();
     private Map<String, OauthTokenIssuer> oauthTokenIssuerMap = new HashMap<>();
     private String[] supportedClaims = null;
+    private List<String> cibaAudiences = new ArrayList<>();
+    private boolean isFapiCiba = false;
     private Map<String, Properties> supportedClientAuthHandlerData = new HashMap<>();
     private String saml2TokenCallbackHandlerName = null;
     private String saml2BearerTokenUserType;
@@ -3210,6 +3212,17 @@ public class OAuthServerConfiguration {
     public boolean isOAuthResponseJspPageAvailable() {
 
         return isOAuthResponseJspPageAvailable;
+     * This method returns if FAPI is enabled for CIBA in identity.xml.
+     */
+    public boolean isFapiCiba() {
+        return isFapiCiba;
+    }
+
+    /**
+     * This method returns allowed audiences for CIBA in identity.xml.
+     */
+    public List<String> getCibaAudiences() {
+        return cibaAudiences;
     }
 
     /**
@@ -3284,10 +3297,13 @@ public class OAuthServerConfiguration {
         // Property to decide whether to add userstore domain to id_token.
         private static final String OPENID_CONNECT_ADD_USERSTORE_DOMAIN_TO_ID_TOKEN = "AddUserstoreDomainToIdToken";
         private static final String REQUEST_OBJECT_ENABLED = "RequestObjectEnabled";
+        private static final String OPENID_CONNECT_CIBA = "CIBA";
         public static final String SEND_ONLY_LOCALLY_MAPPED_ROLES_OF_IDP = "FederatedRoleManagement"
                 + ".ReturnOnlyMappedLocalRoles";
         public static final String OPENID_CONNECT_ADD_UN_MAPPED_USER_ATTRIBUTES = "AddUnmappedUserAttributes";
         public static final String SUPPORTED_CLAIMS = "OpenIDConnectClaims";
+        public static final String SUPPORTED_AUDIENCES = "Audiences";
+        public static final String AUDIENCE = "Audience";
         public static final String REQUEST_OBJECT = "RequestObject";
         public static final String REQUEST_OBJECT_VALIDATOR = "RequestObjectValidator";
         public static final String OAUTH_AUTHZ_REQUEST_CLASS = "OAuthAuthzRequestClass";
@@ -3436,6 +3452,7 @@ public class OAuthServerConfiguration {
 
         // Allow Cross Tenant Introspection Config.
         private static final String ALLOW_CROSS_TENANT_TOKEN_INTROSPECTION = "AllowCrossTenantTokenIntrospection";
+        private static final String OPENID_CONNECT_FAPI_CIBA = "fapi";
     }
 
 }
