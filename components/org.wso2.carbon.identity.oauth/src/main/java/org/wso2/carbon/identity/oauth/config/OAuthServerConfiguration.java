@@ -463,6 +463,8 @@ public class OAuthServerConfiguration {
 
         // Set the availability of oauth_response.jsp page.
         setOAuthResponseJspPageAvailable();
+        // Read config for FAPI
+        parseFapiConfiguration(oauthElem);
     }
 
     /**
@@ -503,6 +505,21 @@ public class OAuthServerConfiguration {
                     OMElement claimElement = (OMElement) claimIterator.next();
                     filteredIntrospectionClaims.add(claimElement.getText());
                 }
+
+    /**
+     * Parse FAPI configuration.
+     *
+     * @param oauthConfigElem oauthConfigElem.
+     */
+    private void parseFapiConfiguration(OMElement oauthConfigElem) {
+
+        OMElement fapiElem = oauthConfigElem.getFirstChildWithName(
+                getQNameWithIdentityNS(ConfigElements.FAPI));
+        if (fapiElem != null) {
+            OMElement cibaElement = fapiElem.getFirstChildWithName(getQNameWithIdentityNS(
+                    ConfigElements.OPENID_CONNECT_CIBA));
+            if (cibaElement != null) {
+                isFapiCiba = Boolean.parseBoolean(cibaElement.getText().trim());
             }
         }
     }
@@ -3444,6 +3461,7 @@ public class OAuthServerConfiguration {
         // Allow Cross Tenant Introspection Config.
         private static final String ALLOW_CROSS_TENANT_TOKEN_INTROSPECTION = "AllowCrossTenantTokenIntrospection";
         private static final String OPENID_CONNECT_FAPI_CIBA = "fapi";
+        private static final String FAPI = "FAPI";
     }
 
 }
