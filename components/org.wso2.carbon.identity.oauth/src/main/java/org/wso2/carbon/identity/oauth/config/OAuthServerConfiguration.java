@@ -3228,6 +3228,8 @@ public class OAuthServerConfiguration {
     public boolean isOAuthResponseJspPageAvailable() {
 
         return isOAuthResponseJspPageAvailable;
+    
+    /**
      * This method returns if FAPI is enabled for CIBA in identity.xml.
      */
     public boolean isFapiCiba() {
@@ -3245,7 +3247,6 @@ public class OAuthServerConfiguration {
         public static final String OAUTH1_ACCESS_TOKEN_URL = "OAuth1AccessTokenUrl";
         public static final String OAUTH2_AUTHZ_EP_URL = "OAuth2AuthzEPUrl";
         public static final String OAUTH2_TOKEN_EP_URL = "OAuth2TokenEPUrl";
-        public static final String OAUTH2_CIBA_EP_URL = "OAuth2CibaEPUrl";
         public static final String OAUTH2_USERINFO_EP_URL = "OAuth2UserInfoEPUrl";
         public static final String OAUTH2_REVOCATION_EP_URL = "OAuth2RevokeEPUrl";
         public static final String OAUTH2_INTROSPECTION_EP_URL = "OAuth2IntrospectEPUrl";
@@ -3460,7 +3461,6 @@ public class OAuthServerConfiguration {
 
         // Allow Cross Tenant Introspection Config.
         private static final String ALLOW_CROSS_TENANT_TOKEN_INTROSPECTION = "AllowCrossTenantTokenIntrospection";
-        private static final String OPENID_CONNECT_FAPI_CIBA = "fapi";
         private static final String FAPI = "FAPI";
     }
 
